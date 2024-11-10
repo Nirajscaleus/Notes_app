@@ -1,0 +1,92 @@
+<html>
+  <head>
+    <style>
+      .event-form-container {
+        max-width: 600px;
+        margin: 40px auto;
+        padding: 20px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      }
+
+      .event-form-container h2 {
+        text-align: center;
+        color: #007BFF;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        margin-bottom: 15px;
+      }
+
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        color: #333333;
+        margin-bottom: 5px;
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        box-sizing: border-box;
+        transition: border-color 0.3s ease-in-out;
+      }
+
+      .form-control:focus {
+        border-color: #007BFF;
+        outline: none;
+      }
+
+      .submit-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 18px;
+        color: #ffffff;
+        background-color: #007BFF;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+
+      .submit-btn:hover {
+        background-color: #0056b3;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="event-form-container">
+      <h1 style="text-align: center;">Create new Notes Page</h1>
+      <%= form_with model: @note, local: true do |form| %>
+        <div class="form-group">
+          <%= form.label :title, "Title" %>
+          <%= form.text_field :title, class: "form-control", placeholder: "Enter title" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :date, "Date" %>
+          <%= form.date_field :date, class: "form-control", placeholder: "Enter the date" %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description, "Description" %>
+          <%= form.text_field :description, class: "form-control", placeholder: "Enter description" %>
+        </div>
+        
+        <div class="form-group">
+          <%= form.label :user_id, "User" %>
+          <%= form.text_field :user_id, class: 'form-input' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.submit "Save", class: "submit-btn" %>
+        </div>
+      <% end %>
+    </div>
+  </body>
+</html>

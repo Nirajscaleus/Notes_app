@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Manager</title>
+    <style>
+        /* Base Styling */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        /* Table Container */
+        .table-container {
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        /* Table Styling */
+        .event-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 1em;
+            color: #333;
+        }
+
+        .event-table th,
+        .event-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .event-table th {
+            background-color: #007BFF;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .event-table tbody tr:nth-child(even) {
+            background-color: #f7f7f7;
+        }
+
+        .event-table tbody tr:hover {
+            background-color: #e9f5ff;
+        }
+
+        /* Action Link Styling */
+        .delete-link {
+            color: #dc3545;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 6px 12px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            background-color: #f8d7da;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .delete-link:hover {
+            background-color: #dc3545;
+            color: #fff;
+        }
+        .header {
+            background-color: #007BFF; /* Primary color */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-title {
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+
+    </style>
+</head>
+<body>
+    <header class="header">
+    <h1 class="header-title">Notes Manager</h1>
+    <div class="header-nav">
+        <%= render partial: 'partial/header'%>
+    </div>
+    </header>
+    <h1>Show All Notes</h1>
+    <div class="table-container">
+        <table class="event-table">
+            <thead>
+                <tr>
+                    <th> Title</th>
+                    <th> Date</th>
+                    <th> User_id</th>
+                    <th> Description</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><%= @note.title %></td>
+                    <td><%= @note.date %></td>
+                    <td><%= @note.user_id%></td>
+                    <td><%= @note.description%></td>
+                    <td>
+                        <%= link_to "edit", edit_note_path(@note), class: "delete-link" %>
+                        <%= button_to "Delete", note_path(@note), method: :delete, class: "delete-link"%>
+                        <%= link_to "Home", "/notes", class: "delete-link"%>
+                    </td>
+                     
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

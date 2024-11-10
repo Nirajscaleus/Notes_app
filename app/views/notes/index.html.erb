@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+ <head>
+ <title>Notes Manager</title>
+   <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .event-table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+
+        .event-table th,
+        .event-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .event-table th {
+            background-color: #007BFF; /* Bootstrap primary color */
+            color: white;
+            font-weight: bold;
+        }
+
+        .event-table tr:hover {
+            background-color: #f1f1f1; /* Light gray on hover */
+        }
+
+        .event-table td a {
+            text-decoration: none;
+            color: #007BFF;
+        }
+
+        .event-table td a:hover {
+            text-decoration: underline; /* Underline on hover for links */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            background-color: #007BFF; /* Primary color */
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header-title {
+            margin: 0;
+        }
+
+        .header-nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .welcome-message {
+            margin-right: 20px; /* Space between welcome message and links */
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+            transition: color 0.3s; /* Smooth color transition */
+        }
+
+        .nav-link:hover {
+            color: #cce4ff; /* Light blue on hover */
+        }
+
+        .logout-btn {
+            background-color: #dc3545; /* Bootstrap danger color */
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s; /* Smooth background transition */
+        }
+
+        .logout-btn:hover {
+            background-color: #c82333; /* Darker red on hover */
+        }
+        .new-task-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            font-size: 18px;
+            text-decoration: none;
+        }
+
+        .new-task-btn:hover {
+            background-color: #0056b3;
+        }
+
+        
+    </style>
+
+ </head>
+  <body>
+    <header class="header">
+    <h1 class="header-title">Notes Manager</h1>
+    <div class="header-nav">
+        <%= render partial: 'partial/header'%>
+    </div>
+    </header>
+    <h1 style="text-align: center;">Notes Application System</h1>
+    <table class="event-table">
+        <thead>
+        <tr>
+            <th>Notes Title</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% if user_signed_in? %>
+            <% @notes.each do |note| %>
+                <tr>
+                <td><%= link_to note.title, note_path(note) %></td>
+                </tr>
+            <% end %>
+        <% end %>
+        </tbody>
+    </table>
+    <% if user_signed_in? %>
+      <%= link_to "Create new", new_note_path, class: 'new-task-btn' %>
+    <% end %>  
+</body>  
+</html>
+

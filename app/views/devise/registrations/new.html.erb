@@ -1,0 +1,105 @@
+<html>
+<head>
+
+  <style>
+  /* General form styling */
+      form {
+        max-width: 400px; /* Set a max width for the form */
+        margin: 0 auto; /* Center the form on the page */
+        padding: 20px; /* Add padding inside the form */
+        border: 1px solid #ccc; /* Add a border around the form */
+        border-radius: 5px; /* Round the corners of the border */
+        background-color: #f9f9f9; /* Light background color */
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+      }
+      
+      /* Field styling */
+      .field {
+        margin-bottom: 15px; /* Space between fields */
+      }
+      
+      .field label {
+        display: block; /* Make labels block elements */
+        margin-bottom: 5px; /* Space below the label */
+        font-weight: bold; /* Bold text for labels */
+      }
+      
+      .field input {
+        width: 100%; /* Make input fields full width */
+        padding: 10px; /* Add padding inside input fields */
+        border: 1px solid #ccc; /* Border for input fields */
+        border-radius: 4px; /* Rounded corners for input fields */
+        box-sizing: border-box; /* Include padding and border in width calculation */
+      }
+      
+      /* Styling for the submit button */
+      .actions input[type="submit"] {
+        background-color: #28a745; /* Green background for the button */
+        color: white; /* White text color */
+        border: none; /* Remove border */
+        padding: 10px 15px; /* Add padding */
+        border-radius: 4px; /* Rounded corners */
+        cursor: pointer; /* Change cursor on hover */
+        font-size: 16px; /* Increase font size */
+      }
+      
+      .actions input[type="submit"]:hover {
+        background-color: #218838; /* Darker green on hover */
+      }
+      
+      /* Error messages styling */
+      .error-message {
+        color: red; /* Red color for error messages */
+        font-size: 14px; /* Slightly smaller font size */
+      }
+      
+      /* Optional: Styling for links */
+      .links {
+        margin-top: 15px; /* Space above the links */
+        text-align: center; /* Center align the links */
+      }
+      
+      .links a {
+        color: #007bff; /* Bootstrap primary color */
+        text-decoration: none; /* Remove underline */
+      }
+      
+      .links a:hover {
+        text-decoration: underline; /* Underline on hover */
+      }
+  
+  </style> 
+
+</head>
+
+<body>
+<h1 style="text-align: center;">Signup Page</h1>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password %>
+    <% if @minimum_password_length %>
+    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <% end %><br />
+    <%= f.password_field :password, autocomplete: "new-password" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Sign up" %>
+  </div>
+<% end %>
+
+<%= render "devise/shared/links" %>
+</body>
+</html>
